@@ -4,8 +4,8 @@ import { Navbar } from '@/components/navbar';
 import { ThemeProvider } from '@/components/theme-provider';
 
 export const metadata: Metadata = {
-  title: 'LexDraft – Generator pism',
-  description: 'Nowoczesny generator polskich pism urzędowych i sądowych bez backendu.'
+  title: 'LexDraft – Katalog dokumentów',
+  description: 'Nowoczesna wyszukiwarka gotowych wzorów pism urzędowych i sądowych.'
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

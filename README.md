@@ -1,24 +1,32 @@
-# LexDraft – Generator polskich pism
+# LexDraft – Katalog gotowych dokumentów
 
-Lekka, szybka aplikacja webowa w Next.js (App Router) do tworzenia i drukowania:
-- wniosków,
-- pism sądowych,
-- odwołań.
+Nowoczesna aplikacja webowa w Next.js do:
+- wyszukiwania wzorów dokumentów,
+- przeglądania ich szczegółów,
+- pobierania gotowych plików `.txt`.
 
 ## Stack
 - Next.js App Router
 - TypeScript
 - Tailwind CSS
-- Bez backendu, bez logowania, bez bazy danych i bez zewnętrznych API
+- Lokalna baza danych w kodzie (`lib/data/documents.ts`)
+- Brak logowania, brak bazy zewnętrznej, brak API zewnętrznych
 
-## Funkcje
-- Landing page (hero, korzyści, CTA)
-- Generator dokumentów z walidacją formularza
-- Wbudowane szablony dokumentów po polsku
-- Edycja wygenerowanej treści
-- Podgląd dokumentu A4
-- Druk/PDF przez `window.print()` i `@media print`
+## Najważniejsze funkcje
+- Landing page z wyszukiwarką i CTA
+- Katalog dokumentów z filtrami i sortowaniem
+- Wyszukiwanie po tytule, kategorii, typie i tagach
+- Strona szczegółów dokumentu (zastosowanie, grupa docelowa, wymagane dane)
+- Pobieranie dokumentu jako plik `.txt`
 - Dark/light mode z zapisem preferencji w `localStorage`
+
+## Struktura projektu
+- `app/page.tsx` – landing + szybkie wyszukiwanie
+- `app/documents/page.tsx` – katalog dokumentów
+- `app/documents/[slug]/page.tsx` – szczegóły dokumentu
+- `app/download/[slug]/route.ts` – endpoint pobierania pliku `.txt`
+- `lib/data/documents.ts` – lokalne dane i modele dokumentów
+- `components/documents/*` – komponenty katalogu, kart i pobierania
 
 ## Uruchomienie lokalnie
 1. `npm install`
@@ -31,11 +39,13 @@ Lekka, szybka aplikacja webowa w Next.js (App Router) do tworzenia i drukowania:
 
 ## Deployment na Vercelu
 1. Wypchnij repozytorium na GitHub/GitLab/Bitbucket.
-2. Zaloguj się do Vercel i wybierz **New Project**.
-3. Wskaż repozytorium i kliknij **Deploy**.
-4. Bez dodatkowych zmiennych środowiskowych – aplikacja działa „out of the box”.
+2. W Vercel kliknij **New Project**.
+3. Wybierz repozytorium i **Deploy**.
+4. Brak dodatkowych ENV-ów — działa od razu.
 
-## Architektura (skrót)
-- Cała logika generowania dokumentu jest po stronie klienta (`components/document-generator.tsx`, `lib/templates.ts`).
-- Brak zewnętrznych usług i trwałej bazy: dane formularza są trzymane w stanie komponentu.
-- Styl wydruku i PDF realizowany przez CSS (`@media print`) i funkcję `window.print()`.
+## Przykładowe dokumenty
+- Wniosek o wydanie odpisu
+- Odwołanie od decyzji administracyjnej
+- Wniosek o uzasadnienie wyroku
+- Wezwanie do zapłaty
+- Sprzeciw od nakazu zapłaty
