@@ -5,8 +5,8 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Footer } from '@/components/footer';
 
 export const metadata: Metadata = {
-  title: 'LexDraft – Katalog dokumentów',
-  description: 'Nowoczesna wyszukiwarka gotowych wzorów pism urzędowych i sądowych.'
+  title: 'LexDraft – Usługa pism i wniosków',
+  description: 'Nowoczesna usługa wsparcia formalnego i katalog wzorów dokumentów dla osób oraz firm.'
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

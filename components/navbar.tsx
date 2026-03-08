@@ -11,10 +11,13 @@ export function Navbar() {
         </Link>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <Link href="/documents" className="btn-primary px-4 py-2 text-sm">
-            Katalog
+          <Link href="/#oferta" className="btn-secondary px-4 py-2 text-sm">
+            Oferta
           </Link>
-          <Link href="/contact" className="btn-secondary px-4 py-2 text-sm">
+          <Link href="/documents" className="btn-secondary px-4 py-2 text-sm">
+            Wzory
+          </Link>
+          <Link href="/contact" className="btn-primary px-4 py-2 text-sm">
             Kontakt
           </Link>
           <ThemeToggle />

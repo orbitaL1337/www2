@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from 'react';
 
-type ContactType = 'brakujacy_wniosek' | 'brakujace_pismo' | 'brakujace_odwolanie' | 'inne';
+type ContactType = 'przygotowanie_pisma' | 'redakcja_wniosku' | 'brakujacy_wzor' | 'inne';
 
 type FormValues = {
   name: string;
@@ -20,7 +20,7 @@ const initialValues: FormValues = {
   name: '',
   email: '',
   subject: '',
-  requestType: 'brakujacy_wniosek',
+  requestType: 'przygotowanie_pisma',
   message: '',
   missingDocumentName: '',
   contactConsent: false
@@ -42,7 +42,7 @@ export function ContactForm() {
     } else if (!/^\S+@\S+\.\S+$/.test(values.email)) {
       nextErrors.email = 'Podaj poprawny adres e-mail.';
     }
-    if (!values.subject.trim()) nextErrors.subject = 'Podaj temat zgłoszenia.';
+    if (!values.subject.trim()) nextErrors.subject = 'Podaj temat zapytania.';
     if (!values.message.trim()) {
       nextErrors.message = 'Opisz czego potrzebujesz.';
     } else if (values.message.trim().length < 20) {
@@ -71,7 +71,7 @@ export function ContactForm() {
 
       if (!response.ok) throw new Error('Wysyłka nie powiodła się.');
 
-      setStatusMessage('Dziękujemy. Zgłoszenie zostało przyjęte. Skontaktujemy się na podany adres e-mail.');
+      setStatusMessage('Dziękujemy. Zapytanie zostało przyjęte. Wrócimy z informacją organizacyjną na podany e-mail.');
       setStatusType('success');
       setValues(initialValues);
     } catch {
@@ -94,9 +94,9 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="surface-card space-y-5 p-6 sm:p-8">
-      <h2 className="text-2xl font-semibold tracking-tight">Zgłoś brakujący dokument</h2>
+      <h2 className="text-2xl font-semibold tracking-tight">Napisz do nas w sprawie pisma lub wniosku</h2>
       <p className="text-sm text-slate-600 dark:text-slate-400">
-        Wypełnij formularz, jeśli nie widzisz potrzebnego wzoru w katalogu. Każde zgłoszenie analizujemy pod kątem dalszego rozwoju serwisu.
+        Opisz, jakiego pisma lub wsparcia formalnego potrzebujesz. Formularz służy do zapytań ofertowych i zgłoszeń brakujących wzorów.
       </p>
 
       <div className="grid gap-4 sm:grid-cols-2">
@@ -115,10 +115,10 @@ export function ContactForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Rodzaj zgłoszenia" error={errors.requestType}>
           <select value={values.requestType} onChange={(e) => onChange('requestType', e.target.value as ContactType)} className="input">
-            <option value="brakujacy_wniosek">Brakujący wniosek</option>
-            <option value="brakujace_pismo">Brakujące pismo</option>
-            <option value="brakujace_odwolanie">Brakujące odwołanie</option>
-            <option value="inne">Inne</option>
+            <option value="przygotowanie_pisma">Przygotowanie pisma</option>
+            <option value="redakcja_wniosku">Redakcja / uporządkowanie wniosku</option>
+            <option value="brakujacy_wzor">Brakujący wzór dokumentu</option>
+            <option value="inne">Inne zapytanie</option>
           </select>
         </Field>
         <Field label="Nazwa poszukiwanego dokumentu (opcjonalnie)" error={errors.missingDocumentName}>
@@ -137,7 +137,7 @@ export function ContactForm() {
           onChange={(e) => onChange('contactConsent', e.target.checked)}
           className="mt-1 h-4 w-4 rounded border-slate-300"
         />
-        Wyrażam zgodę na kontakt zwrotny w sprawie zgłoszenia.
+        Wyrażam zgodę na kontakt zwrotny w sprawie zapytania.
       </label>
       {errors.contactConsent && <p className="text-xs text-rose-600">{errors.contactConsent}</p>}
 
@@ -154,11 +154,11 @@ export function ContactForm() {
       )}
 
       <button type="submit" disabled={isSubmitting} className="btn-primary disabled:opacity-60">
-        {isSubmitting ? 'Wysyłanie...' : 'Wyślij zgłoszenie'}
+        {isSubmitting ? 'Wysyłanie...' : 'Wyślij zapytanie'}
       </button>
 
       <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
-        Serwis nie udziela porad prawnych. Formularz służy do zgłoszeń formalnych i pytań o dostępność wzorów dokumentów.
+        Serwis nie udziela porad prawnych. Formularz służy do spraw organizacyjnych, redakcyjnych i pytań o dostępność wzorów dokumentów.
       </p>
     </form>
   );

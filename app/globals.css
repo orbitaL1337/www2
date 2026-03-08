@@ -14,6 +14,51 @@ body {
   @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
 }
 
+:root {
+  --heading-hover-color: #3346ff;
+  --heading-anim-duration: 240ms;
+}
+
+:where(h1, h2, h3) {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  transition:
+    color var(--heading-anim-duration) ease,
+    transform var(--heading-anim-duration) ease;
+}
+
+:where(h1, h2, h3)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.2em;
+  width: 100%;
+  height: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--heading-anim-duration) ease;
+  background: color-mix(in oklab, var(--heading-hover-color) 80%, transparent);
+}
+
+:where(h1, h2, h3):hover,
+:where(h1, h2, h3):focus-within {
+  color: var(--heading-hover-color);
+  transform: translateY(-1px);
+}
+
+:where(h1, h2, h3):hover::after,
+:where(h1, h2, h3):focus-within::after {
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :where(h1, h2, h3),
+  :where(h1, h2, h3)::after {
+    transition-duration: 1ms;
+  }
+}
+
 ::selection {
   @apply bg-indigo-200 text-slate-900 dark:bg-indigo-700 dark:text-white;
 }
