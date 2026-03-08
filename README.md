@@ -14,7 +14,7 @@ Nowoczesna aplikacja legal-tech w Next.js do:
 - Brak logowania, brak bazy zewnętrznej, brak API zewnętrznych
 
 ## Najważniejsze funkcje
-- Premium landing page w stylu SaaS / legal-tech (hero, korzyści, statystyki, FAQ)
+- Premium landing page w stylu SaaS / legal-tech (hero, korzyści, statystyki, FAQ accordion)
 - Katalog dokumentów z filtrami i sortowaniem
 - Wyszukiwanie po tytule, kategorii, typie i tagach
 - Strona szczegółów dokumentu (zastosowanie, grupa docelowa, wymagane dane)
@@ -32,6 +32,7 @@ Nowoczesna aplikacja legal-tech w Next.js do:
 - `app/api/contact/route.ts` – lekki endpoint do obsługi formularza
 - `lib/data/documents.ts` – lokalne dane i modele dokumentów
 - `components/documents/*` – komponenty katalogu, kart i pobierania
+- `components/faq-accordion.tsx` – sekcja FAQ z interaktywnym accordionem
 
 ## Uruchomienie lokalnie
 1. `npm install`

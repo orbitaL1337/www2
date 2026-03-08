@@ -1,39 +1,61 @@
 import Link from 'next/link';
+import { FaqAccordion } from '@/components/faq-accordion';
 import { categoryLabels, documents } from '@/lib/data/documents';
 
 const benefits = [
   {
-    title: 'Precyzyjne wyszukiwanie',
-    description: 'Szybko znajdziesz właściwy wzór po tytule, kategorii i tagach – bez zbędnego klikania.'
+    title: 'Inteligentne wyszukiwanie wzorów',
+    description: 'Szybko odnajdujesz właściwe pismo po tytule, kategorii i tagach. Bez chaosu i bez zgadywania.'
   },
   {
-    title: 'Gotowe wzory formalne',
-    description: 'Dokumenty są przygotowane w czytelnej strukturze, łatwej do dalszego uzupełnienia i edycji.'
+    title: 'Jasna struktura formalności',
+    description: 'Każdy dokument ma opis zastosowania, wymagane dane oraz podgląd treści, który ułatwia podjęcie decyzji.'
   },
   {
-    title: 'Proces bez komplikacji',
-    description: 'Wyszukaj, sprawdź szczegóły i pobierz. Prosty flow zaprojektowany pod realne formalności.'
+    title: 'Gotowość do działania od razu',
+    description: 'Pobierasz gotowy wzór i uzupełniasz go swoimi danymi. Prosto, szybko i bez zbędnych kroków.'
   }
 ];
 
 const steps = [
-  'Wpisz temat sprawy lub wybierz kategorię dokumentu.',
-  'Otwórz szczegóły i sprawdź wymagane dane oraz zastosowanie.',
-  'Pobierz wzór i uzupełnij go własnymi informacjami.'
+  {
+    title: 'Wyszukaj dokument',
+    description: 'Wpisz temat sprawy albo użyj filtrów, aby zawęzić katalog do najbardziej trafnych wyników.'
+  },
+  {
+    title: 'Sprawdź szczegóły',
+    description: 'Przeczytaj opis zastosowania, wymagane dane i podgląd wzoru przed pobraniem dokumentu.'
+  },
+  {
+    title: 'Pobierz i uzupełnij',
+    description: 'Pobierz dokument jednym kliknięciem i dostosuj treść do własnej sytuacji formalnej.'
+  }
+];
+
+const trustPillars = [
+  'Spójna prezentacja dokumentów i kategorii',
+  'Przejrzysty proces od wyszukania do pobrania',
+  'Rozwój katalogu oparty o potrzeby użytkowników',
+  'Nowoczesny, dostępny interfejs mobile i desktop'
 ];
 
 const faqItems = [
   {
-    question: 'Czy mogę korzystać z serwisu bez konta?',
-    answer: 'Tak. Przeglądanie katalogu i pobieranie wzorów nie wymagają logowania.'
+    question: 'Czy potrzebuję konta, żeby pobrać dokument?',
+    answer: 'Nie. Katalog dokumentów i pobieranie wzorów są dostępne bez logowania i bez rejestracji.'
   },
   {
-    question: 'Jakie dokumenty znajdę w katalogu?',
-    answer: 'Wnioski, odwołania, pisma sądowe i wzory formalne do codziennych spraw urzędowych.'
+    question: 'Czy serwis udziela porad prawnych?',
+    answer:
+      'Nie. LexDraft udostępnia materiały formalne i organizacyjne. W sprawach wymagających interpretacji prawa skonsultuj się z profesjonalnym pełnomocnikiem.'
   },
   {
-    question: 'Nie widzę potrzebnego wzoru. Co mogę zrobić?',
-    answer: 'Przejdź do kontaktu i zgłoś brakujący dokument – rozwijamy katalog na podstawie zgłoszeń.'
+    question: 'Co zrobić, jeśli nie ma dokumentu, którego potrzebuję?',
+    answer: 'Przejdź do formularza kontaktowego i zgłoś brakujący wzór. To najskuteczniejsza droga do rozwoju katalogu.'
+  },
+  {
+    question: 'Czy dokumenty można edytować po pobraniu?',
+    answer: 'Tak. Pliki są pobierane w formacie tekstowym i możesz je swobodnie edytować zgodnie z potrzebą.'
   }
 ];
 
@@ -43,26 +65,28 @@ export default function HomePage() {
   const categoriesCount = Object.keys(categoryLabels).length;
 
   const stats = [
-    { label: 'Dostępne wzory dokumentów', value: `${documents.length * 50}+` },
-    { label: 'Łączna liczba pobrań', value: '12 000+' },
-    { label: 'Kategorie dokumentów', value: `${categoriesCount * 4}+` },
-    { label: 'Zgłoszenia brakujących wzorów', value: '500+' }
+    { label: 'Wzory dokumentów', value: `${documents.length * 50}+` },
+    { label: 'Pobrań rocznie', value: '12 000+' },
+    { label: 'Kategorie formalności', value: `${categoriesCount * 4}+` },
+    { label: 'Zgłoszenia użytkowników', value: '500+' }
   ];
 
   return (
-    <main className="pb-8">
-      <section className="mx-auto max-w-6xl px-4 pb-12 pt-14 sm:px-6 sm:pt-20">
-        <div className="surface-card p-8 sm:p-14">
+    <main className="pb-12">
+      <section className="mx-auto max-w-6xl px-4 pb-14 pt-14 sm:px-6 sm:pt-20">
+        <div className="surface-card relative overflow-hidden p-8 sm:p-14">
+          <div className="pointer-events-none absolute -right-20 -top-20 h-52 w-52 rounded-full bg-indigo-500/10 blur-2xl" aria-hidden />
+          <div className="pointer-events-none absolute -bottom-24 -left-16 h-52 w-52 rounded-full bg-cyan-500/10 blur-2xl" aria-hidden />
+
           <p className="badge-soft mb-5 border-indigo-200 bg-indigo-50 text-indigo-700 dark:border-indigo-800 dark:bg-indigo-950/40 dark:text-indigo-300">
-            SaaS / Legal-Tech • Katalog wzorów dokumentów
+            LexDraft • Premium Legal-Tech
           </p>
 
           <h1 className="max-w-4xl text-4xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white sm:text-5xl">
-            Profesjonalne wzory pism i wniosków do szybkiego wykorzystania w formalnościach.
+            Profesjonalna platforma do wyszukiwania i pobierania wzorów pism oraz dokumentów formalnych.
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-            LexDraft to nowoczesny katalog dokumentów, który pomaga oszczędzać czas i uporządkować proces przygotowania pism.
-            Przejrzysta struktura, czytelny język i wygodny dostęp do gotowych wzorów.
+            Zaprojektowana jak nowoczesny produkt SaaS: przejrzysty katalog, szybkie wyszukiwanie, czytelne szczegóły i gotowe wzory do natychmiastowego użycia.
           </p>
 
           <form action="/documents" className="mt-8 max-w-3xl">
@@ -72,10 +96,10 @@ export default function HomePage() {
                 id="q"
                 name="q"
                 type="search"
-                placeholder="Szukaj np. odwołanie, wezwanie do zapłaty, uzasadnienie wyroku..."
+                placeholder="Szukaj np. odwołanie, wniosek o uzasadnienie, wezwanie do zapłaty..."
                 className="input border-0 bg-transparent p-2 focus:ring-0 dark:bg-transparent"
               />
-              <button className="btn-primary">Przejdź do wyników</button>
+              <button className="btn-primary">Przejdź do katalogu</button>
             </div>
           </form>
 
@@ -86,18 +110,17 @@ export default function HomePage() {
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/documents" className="btn-primary">Przeglądaj katalog</Link>
-            <Link href="/contact" className="btn-secondary">Nie znalazłeś dokumentu?</Link>
+            <Link href="/documents" className="btn-primary">Przeglądaj dokumenty</Link>
+            <Link href="/contact" className="btn-secondary">Zgłoś brakujący wzór</Link>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
-        <h2 className="text-2xl font-semibold tracking-tight">Dlaczego warto korzystać z LexDraft?</h2>
-        <div className="mt-6 grid gap-4 md:grid-cols-3">
+      <section className="mx-auto max-w-6xl px-4 py-4 sm:px-6" aria-label="Korzyści">
+        <div className="grid gap-4 md:grid-cols-3">
           {benefits.map((item) => (
-            <article key={item.title} className="surface-card p-6">
-              <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-100">{item.title}</h3>
+            <article key={item.title} className="surface-card p-6 transition duration-200 hover:-translate-y-0.5 hover:shadow-card">
+              <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">{item.title}</h2>
               <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">{item.description}</p>
             </article>
           ))}
@@ -106,9 +129,13 @@ export default function HomePage() {
 
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6" aria-labelledby="stats-heading">
         <div className="surface-card p-6 sm:p-8">
-          <h2 id="stats-heading" className="text-2xl font-semibold tracking-tight">Statystyki serwisu</h2>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Skala katalogu i aktywność użytkowników w jednym miejscu.</p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mb-6 flex items-end justify-between gap-4">
+            <div>
+              <h2 id="stats-heading" className="text-2xl font-semibold tracking-tight">Statystyki platformy</h2>
+              <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Skala katalogu i aktywność użytkowników widoczna na pierwszy rzut oka.</p>
+            </div>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {stats.map((stat) => (
               <article key={stat.label} className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-700 dark:bg-slate-950">
                 <p className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100">{stat.value}</p>
@@ -119,73 +146,75 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-6 sm:px-6">
-        <div className="grid gap-6 lg:grid-cols-2">
-          <article className="surface-card p-7">
-            <h2 className="text-2xl font-semibold tracking-tight">Jak to działa?</h2>
-            <ol className="mt-5 space-y-3">
-              {steps.map((step, index) => (
-                <li key={step} className="rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-300">
-                  <span className="mr-2 font-semibold text-slate-900 dark:text-slate-100">{index + 1}.</span>
-                  {step}
-                </li>
-              ))}
-            </ol>
-          </article>
+      <section className="mx-auto grid max-w-6xl gap-6 px-4 py-6 sm:px-6 lg:grid-cols-2">
+        <article className="surface-card p-7">
+          <h2 className="text-2xl font-semibold tracking-tight">Jak działa LexDraft?</h2>
+          <ol className="mt-5 space-y-3">
+            {steps.map((step, index) => (
+              <li key={step.title} className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-950">
+                <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">{index + 1}. {step.title}</p>
+                <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{step.description}</p>
+              </li>
+            ))}
+          </ol>
+        </article>
 
-          <article className="surface-card p-7">
-            <h2 className="text-2xl font-semibold tracking-tight">Najpopularniejsze dokumenty</h2>
-            <ul className="mt-5 space-y-3">
-              {topDocuments.map((doc, index) => (
-                <li key={doc.id} className="flex items-start justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-950">
-                  <div>
-                    <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Top {index + 1}</p>
-                    <p className="mt-1 font-medium text-slate-900 dark:text-slate-100">{doc.title}</p>
-                  </div>
-                  <Link href={`/documents/${doc.slug}`} className="text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">Szczegóły →</Link>
-                </li>
-              ))}
-            </ul>
-          </article>
-        </div>
+        <article className="surface-card p-7">
+          <h2 className="text-2xl font-semibold tracking-tight">Najpopularniejsze dokumenty</h2>
+          <ul className="mt-5 space-y-3">
+            {topDocuments.map((doc, index) => (
+              <li key={doc.id} className="flex items-start justify-between gap-3 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-950">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">Top {index + 1}</p>
+                  <p className="mt-1 font-medium text-slate-900 dark:text-slate-100">{doc.title}</p>
+                </div>
+                <Link href={`/documents/${doc.slug}`} className="text-sm font-semibold text-indigo-600 hover:text-indigo-500 dark:text-indigo-400">
+                  Szczegóły →
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </article>
       </section>
 
-      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-        <div className="grid gap-6 lg:grid-cols-2">
-          <article className="surface-card p-7">
-            <h2 className="text-2xl font-semibold tracking-tight">Dokumenty i formalności w jednym miejscu</h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
-              W katalogu znajdziesz wzory dokumentów dopasowane do spraw administracyjnych i sądowych. Każdy wpis zawiera opis zastosowania oraz wymagane informacje.
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2">
-              {Object.values(categoryLabels).map((label) => (
-                <span key={label} className="badge-soft">{label}</span>
-              ))}
-            </div>
-          </article>
+      <section className="mx-auto grid max-w-6xl gap-6 px-4 py-10 sm:px-6 lg:grid-cols-2">
+        <article className="surface-card p-7">
+          <h2 className="text-2xl font-semibold tracking-tight">Dlaczego warto nam zaufać?</h2>
+          <ul className="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-400">
+            {trustPillars.map((item) => (
+              <li key={item} className="flex gap-3">
+                <span className="mt-1 inline-block h-2 w-2 rounded-full bg-emerald-500" aria-hidden />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
+            Serwis nie świadczy porad prawnych i nie zastępuje profesjonalnej pomocy prawnej. Materiały mają charakter informacyjny i formalny.
+          </p>
+        </article>
 
-          <article className="surface-card p-7">
-            <h2 className="text-2xl font-semibold tracking-tight">Zaufanie i przejrzystość</h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
-              Projektujemy serwis tak, aby wspierał użytkownika na każdym etapie formalności — od wyszukania wzoru po pobranie dokumentu i zgłoszenie braków.
-            </p>
-            <p className="mt-5 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
-              Serwis nie świadczy porad prawnych i nie zastępuje kancelarii ani profesjonalnej pomocy prawnej.
-            </p>
-          </article>
-        </div>
+        <article className="surface-card p-7">
+          <h2 className="text-2xl font-semibold tracking-tight">Dokumenty i kategorie</h2>
+          <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+            Katalog obejmuje wnioski, odwołania, pisma sądowe i dokumenty urzędowe. Każda kategoria została opisana i uporządkowana z myślą o szybkim odnajdywaniu właściwych wzorów.
+          </p>
+          <div className="mt-4 flex flex-wrap gap-2">
+            {Object.values(categoryLabels).map((label) => (
+              <span key={label} className="badge-soft">{label}</span>
+            ))}
+          </div>
+          <div className="mt-6">
+            <Link href="/documents" className="btn-secondary">Zobacz pełny katalog</Link>
+          </div>
+        </article>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
         <div className="surface-card p-7">
           <h2 className="text-2xl font-semibold tracking-tight">FAQ</h2>
-          <div className="mt-5 grid gap-4 md:grid-cols-3">
-            {faqItems.map((item) => (
-              <article key={item.question} className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-700 dark:bg-slate-950">
-                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">{item.question}</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">{item.answer}</p>
-              </article>
-            ))}
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-400">Najczęściej zadawane pytania dotyczące działania platformy.</p>
+          <div className="mt-5">
+            <FaqAccordion items={faqItems} />
           </div>
         </div>
       </section>

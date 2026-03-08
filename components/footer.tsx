@@ -23,6 +23,7 @@ export function Footer() {
             <li><Link href="/documents" className="hover:text-slate-900 dark:hover:text-slate-100">Katalog dokumentów</Link></li>
             <li><Link href="/contact" className="hover:text-slate-900 dark:hover:text-slate-100">Zgłoś brakujący dokument</Link></li>
           </ul>
+          <p className="mt-4 text-xs text-slate-500 dark:text-slate-400">Kontakt: kontakt@lexdraft.local</p>
         </section>
       </div>
 
