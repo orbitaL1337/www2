@@ -10,7 +10,7 @@ export function ThemeToggle() {
       type="button"
       onClick={toggleTheme}
       aria-label="Przełącz motyw"
-      className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:-translate-y-0.5 hover:shadow-md dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+      className="btn-secondary rounded-full px-4 py-2 text-sm"
     >
       {theme === 'dark' ? '☀️ Jasny' : '🌙 Ciemny'}
     </button>

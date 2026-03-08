@@ -15,9 +15,7 @@ export function DownloadButton({ slug, title, className }: DownloadButtonProps) 
     try {
       setIsLoading(true);
       const response = await fetch(`/download/${slug}`);
-      if (!response.ok) {
-        throw new Error('Nie udało się pobrać pliku.');
-      }
+      if (!response.ok) throw new Error('Nie udało się pobrać pliku.');
 
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
@@ -32,14 +30,8 @@ export function DownloadButton({ slug, title, className }: DownloadButtonProps) 
   };
 
   return (
-    <button
-      type="button"
-      onClick={handleDownload}
-      disabled={isLoading}
-      className={className}
-      aria-label={`Pobierz dokument: ${title}`}
-    >
-      {isLoading ? 'Pobieranie...' : 'Pobierz'}
+    <button type="button" onClick={handleDownload} disabled={isLoading} className={className} aria-label={`Pobierz dokument: ${title}`}>
+      {isLoading ? 'Pobieranie...' : 'Pobierz wzór'}
     </button>
   );
 }

@@ -1,6 +1,6 @@
 # LexDraft – Katalog gotowych dokumentów
 
-Nowoczesna aplikacja webowa w Next.js do:
+Nowoczesna aplikacja legal-tech w Next.js do:
 - wyszukiwania wzorów dokumentów,
 - przeglądania ich szczegółów,
 - pobierania gotowych plików `.txt`,
@@ -14,17 +14,17 @@ Nowoczesna aplikacja webowa w Next.js do:
 - Brak logowania, brak bazy zewnętrznej, brak API zewnętrznych
 
 ## Najważniejsze funkcje
-- Landing page z wyszukiwarką i CTA
+- Premium landing page w stylu SaaS / legal-tech (hero, korzyści, statystyki, FAQ)
 - Katalog dokumentów z filtrami i sortowaniem
 - Wyszukiwanie po tytule, kategorii, typie i tagach
 - Strona szczegółów dokumentu (zastosowanie, grupa docelowa, wymagane dane)
 - Pobieranie dokumentu jako plik `.txt`
 - Formularz kontaktowy do zgłaszania brakujących dokumentów
-- Informacja prawno-informacyjna (brak porad prawnych) w footerze i na stronach kluczowych
+- Informacja prawno-informacyjna (brak porad prawnych) w kluczowych miejscach
 - Dark/light mode z zapisem preferencji w `localStorage`
 
 ## Struktura projektu
-- `app/page.tsx` – landing + szybkie wyszukiwanie
+- `app/page.tsx` – landing + sekcje marketingowe
 - `app/documents/page.tsx` – katalog dokumentów
 - `app/documents/[slug]/page.tsx` – szczegóły dokumentu
 - `app/download/[slug]/route.ts` – endpoint pobierania pliku `.txt`

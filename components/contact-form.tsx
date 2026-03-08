@@ -69,11 +69,9 @@ export function ContactForm() {
         body: JSON.stringify(values)
       });
 
-      if (!response.ok) {
-        throw new Error('Wysyłka nie powiodła się.');
-      }
+      if (!response.ok) throw new Error('Wysyłka nie powiodła się.');
 
-      setStatusMessage('Dziękujemy! Zgłoszenie zostało przyjęte. Odpowiemy najszybciej jak to możliwe.');
+      setStatusMessage('Dziękujemy. Zgłoszenie zostało przyjęte. Skontaktujemy się na podany adres e-mail.');
       setStatusType('success');
       setValues(initialValues);
     } catch {
@@ -81,7 +79,7 @@ export function ContactForm() {
         `Imię: ${values.name}\nEmail: ${values.email}\nRodzaj: ${values.requestType}\nPoszukiwany dokument: ${values.missingDocumentName || '-'}\n\nWiadomość:\n${values.message}`
       )}`;
 
-      setStatusMessage('Nie udało się wysłać formularza automatycznie. Otwórz zgłoszenie przez e-mail.');
+      setStatusMessage('Automatyczna wysyłka nie powiodła się. Otwieramy klienta poczty jako bezpieczny fallback.');
       setStatusType('error');
       window.location.href = fallbackMail;
     } finally {
@@ -95,10 +93,10 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-card dark:border-slate-800 dark:bg-slate-900 sm:p-8">
-      <h1 className="text-2xl font-semibold tracking-tight">Zgłoś brakujący dokument</h1>
+    <form onSubmit={onSubmit} className="surface-card space-y-5 p-6 sm:p-8">
+      <h2 className="text-2xl font-semibold tracking-tight">Zgłoś brakujący dokument</h2>
       <p className="text-sm text-slate-600 dark:text-slate-400">
-        Nie znalazłeś potrzebnego wzoru? Wyślij zgłoszenie – dodamy brakujący dokument lub wrócimy z informacją.
+        Wypełnij formularz, jeśli nie widzisz potrzebnego wzoru w katalogu. Każde zgłoszenie analizujemy pod kątem dalszego rozwoju serwisu.
       </p>
 
       <div className="grid gap-4 sm:grid-cols-2">
@@ -155,16 +153,12 @@ export function ContactForm() {
         </p>
       )}
 
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="rounded-xl bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 disabled:opacity-60 dark:bg-slate-100 dark:text-slate-900"
-      >
+      <button type="submit" disabled={isSubmitting} className="btn-primary disabled:opacity-60">
         {isSubmitting ? 'Wysyłanie...' : 'Wyślij zgłoszenie'}
       </button>
 
-      <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
-        Uwaga: Serwis nie udziela porad prawnych. Formularz służy wyłącznie do zgłoszeń formalnych i pytań dotyczących dostępności wzorów dokumentów.
+      <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs leading-5 text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
+        Serwis nie udziela porad prawnych. Formularz służy do zgłoszeń formalnych i pytań o dostępność wzorów dokumentów.
       </p>
     </form>
   );

@@ -32,27 +32,17 @@ export function DocumentCatalog({ initialQuery = '' }: DocumentCatalogProps) {
     });
 
     return result.sort((a, b) => {
-      if (sortBy === 'alphabetical') {
-        return a.title.localeCompare(b.title, 'pl');
-      }
-
-      if (sortBy === 'date') {
-        return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
-      }
-
+      if (sortBy === 'alphabetical') return a.title.localeCompare(b.title, 'pl');
+      if (sortBy === 'date') return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
       return b.popularity - a.popularity;
     });
   }, [query, category, sortBy]);
 
   return (
     <section className="space-y-6" aria-labelledby="documents-title">
-      <div className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
-        <h1 id="documents-title" className="text-2xl font-semibold tracking-tight">
-          Katalog dokumentów
-        </h1>
-        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
-          Wyszukuj gotowe wzory pism i pobieraj je natychmiast.
-        </p>
+      <div className="surface-card p-5 sm:p-6">
+        <h2 id="documents-title" className="text-2xl font-semibold tracking-tight">Wyszukiwarka dokumentów</h2>
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">Filtruj katalog i znajdź właściwy wzór w kilka chwil.</p>
 
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           <label className="md:col-span-2">
@@ -71,9 +61,7 @@ export function DocumentCatalog({ initialQuery = '' }: DocumentCatalogProps) {
             <select value={category} onChange={(event) => setCategory(event.target.value as 'all' | DocumentCategory)} className="input">
               <option value="all">Wszystkie</option>
               {Object.entries(categoryLabels).map(([value, label]) => (
-                <option key={value} value={value}>
-                  {label}
-                </option>
+                <option key={value} value={value}>{label}</option>
               ))}
             </select>
           </label>
@@ -90,19 +78,16 @@ export function DocumentCatalog({ initialQuery = '' }: DocumentCatalogProps) {
       </div>
 
       {filteredDocuments.length > 0 ? (
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {filteredDocuments.map((document) => (
             <DocumentCard key={document.id} document={document} />
           ))}
         </div>
       ) : (
-        <div className="rounded-2xl border border-dashed border-slate-300 p-10 text-center text-slate-500 dark:border-slate-700 dark:text-slate-400">
-          <p className="text-base font-medium">Brak wyników dla podanych kryteriów.</p>
-          <p className="mt-2 text-sm">Nie znalazłeś potrzebnego wniosku lub pisma?</p>
-          <Link
-            href="/contact"
-            className="mt-4 inline-flex rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-900"
-          >
+        <div className="surface-card border-dashed p-10 text-center text-slate-500 dark:text-slate-400">
+          <p className="text-base font-medium text-slate-700 dark:text-slate-200">Brak wyników dla podanych kryteriów.</p>
+          <p className="mt-2 text-sm">Nie znalazłeś potrzebnego wniosku lub pisma? Zgłoś brakujący dokument.</p>
+          <Link href="/contact" className="btn-primary mt-5">
             Zgłoś brakujący dokument
           </Link>
         </div>
