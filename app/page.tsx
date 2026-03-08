@@ -28,7 +28,7 @@ export default function HomePage() {
                 name="q"
                 type="search"
                 placeholder="Szukaj np. odwołanie, wezwanie, uzasadnienie..."
-                className="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm dark:border-slate-700 dark:bg-slate-950"
+                className="input"
               />
               <button className="rounded-xl bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-900">
                 Szukaj
@@ -44,9 +44,12 @@ export default function HomePage() {
             ))}
           </div>
 
-          <div className="mt-8">
+          <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/documents" className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-900">
               Przejdź do katalogu dokumentów
+            </Link>
+            <Link href="/contact" className="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-900">
+              Nie znalazłeś dokumentu? Skontaktuj się
             </Link>
           </div>
         </div>
@@ -62,7 +65,7 @@ export default function HomePage() {
             Szczegóły dokumentu z listą wymaganych danych.
           </li>
           <li className="rounded-2xl border border-slate-200 bg-white p-6 text-sm text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300">
-            Bez rejestracji, bez zewnętrznych usług, gotowe do Vercela.
+            Możliwość zgłoszenia brakującego dokumentu przez formularz kontaktowy.
           </li>
         </ul>
       </section>

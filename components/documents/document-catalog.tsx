@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import { documents, categoryLabels, DocumentCategory } from '@/lib/data/documents';
 import { DocumentCard } from './document-card';
@@ -61,17 +62,13 @@ export function DocumentCatalog({ initialQuery = '' }: DocumentCatalogProps) {
               onChange={(event) => setQuery(event.target.value)}
               type="search"
               placeholder="Np. odwołanie, nakaz zapłaty, urząd..."
-              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm dark:border-slate-700 dark:bg-slate-950"
+              className="input"
             />
           </label>
 
           <label>
             <span className="mb-1 block text-sm font-medium">Kategoria</span>
-            <select
-              value={category}
-              onChange={(event) => setCategory(event.target.value as 'all' | DocumentCategory)}
-              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm dark:border-slate-700 dark:bg-slate-950"
-            >
+            <select value={category} onChange={(event) => setCategory(event.target.value as 'all' | DocumentCategory)} className="input">
               <option value="all">Wszystkie</option>
               {Object.entries(categoryLabels).map(([value, label]) => (
                 <option key={value} value={value}>
@@ -83,11 +80,7 @@ export function DocumentCatalog({ initialQuery = '' }: DocumentCatalogProps) {
 
           <label>
             <span className="mb-1 block text-sm font-medium">Sortowanie</span>
-            <select
-              value={sortBy}
-              onChange={(event) => setSortBy(event.target.value as SortKey)}
-              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm dark:border-slate-700 dark:bg-slate-950"
-            >
+            <select value={sortBy} onChange={(event) => setSortBy(event.target.value as SortKey)} className="input">
               <option value="popularity">Po popularności</option>
               <option value="date">Po dacie aktualizacji</option>
               <option value="alphabetical">Alfabetycznie</option>
@@ -104,7 +97,14 @@ export function DocumentCatalog({ initialQuery = '' }: DocumentCatalogProps) {
         </div>
       ) : (
         <div className="rounded-2xl border border-dashed border-slate-300 p-10 text-center text-slate-500 dark:border-slate-700 dark:text-slate-400">
-          Brak wyników dla podanych kryteriów. Zmień frazę wyszukiwania lub filtr kategorii.
+          <p className="text-base font-medium">Brak wyników dla podanych kryteriów.</p>
+          <p className="mt-2 text-sm">Nie znalazłeś potrzebnego wniosku lub pisma?</p>
+          <Link
+            href="/contact"
+            className="mt-4 inline-flex rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-900"
+          >
+            Zgłoś brakujący dokument
+          </Link>
         </div>
       )}
     </section>

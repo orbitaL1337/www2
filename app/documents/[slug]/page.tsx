@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getDocumentBySlug, categoryLabels } from '@/lib/data/documents';
 import { DownloadButton } from '@/components/documents/download-button';
@@ -62,13 +63,23 @@ export default function DocumentDetailsPage({ params }: DocumentDetailsPageProps
           <pre className="mt-3 whitespace-pre-wrap font-serif text-sm leading-6 text-slate-700 dark:text-slate-300">{document.content}</pre>
         </section>
 
-        <div className="mt-8">
+        <div className="mt-8 flex flex-wrap items-center gap-3">
           <DownloadButton
             slug={document.slug}
             title={document.title}
             className="rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700 dark:bg-slate-100 dark:text-slate-900"
           />
+          <Link
+            href="/contact"
+            className="rounded-lg border border-slate-300 px-4 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800"
+          >
+            Brakuje podobnego dokumentu? Zgłoś
+          </Link>
         </div>
+
+        <p className="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-xs text-amber-900 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-200">
+          Serwis nie świadczy porad prawnych i nie zastępuje kancelarii prawnej. Materiały mają charakter informacyjny i formalny.
+        </p>
       </article>
     </main>
   );
